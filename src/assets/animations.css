@@ -1,0 +1,31 @@
+.slideleft-enter-active,
+.slideup-enter-active,
+.slidedown-enter-active,
+.slideright-enter-active {
+  overflow: hidden;
+  transition: transform 300ms cubic-bezier(0.4, 0.1, 0.7, 0.95);
+}
+.slideup-enter {
+    transform: translateY(100%);
+}
+.slidedown-enter {
+    transform: translateY(-100%);
+}
+.slideright-enter {
+    transform: translateX(-100%);
+}
+.slideleft-enter {
+  transform: translateX(100%);
+}
+.slideup-leave-active,
+.slidedown-leave-active,
+.slideright-leave-active,
+.slideleft-leave-active {
+  transition: opacity .1s;
+}
+.slideup-leave-to,
+.slidedown-leave-to,
+.slideright-leave-to,
+.slideleft-leave-to {
+  opacity: 0;
+}

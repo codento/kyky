@@ -1,0 +1,17 @@
+.path {
+  position: absolute;
+  top: 0;
+  right: 10px
+}
+
+.box {
+  margin: 8px;
+  padding: 0;
+  border-width: 0px;
+  background: rgba(95, 157, 159,0.6);
+}
+.modal-backdrop {
+  pointer-events: none;
+  height: 0;
+  width: 0;
+}

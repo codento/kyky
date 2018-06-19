@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login.vue Template is correct 1`] = `
+<div
+  class="container"
+  style="padding: 30px;"
+>
+  <form>
+    <input
+      class="form-control"
+      id="exampleFormControlInput1"
+      placeholder="Käyttäjätunnus"
+      type="username"
+    />
+     
+    <input
+      class="form-control"
+      id="exampleFormControlInputPass"
+      placeholder="Salasana"
+      type="password"
+    />
+     
+    <input
+      class="btn btn-primary"
+      disabled="disabled"
+      type="submit"
+      value="Kirjaudu"
+    />
+  </form>
+   
+  <!---->
+</div>
+`;

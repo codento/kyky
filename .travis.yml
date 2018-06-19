@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+- '9'
+before_deploy:
+- openssl aes-256-cbc -K $encrypted_840964d7b350_key -iv $encrypted_840964d7b350_iv
+  -in .env.enc -out .env -d
+- npm run build
+deploy:
+  secret_access_key:
+    secure: mnLhu8K1JtC3itjvpBYiLDTO6nIeTk+59KX6XZrEcVoHhELMQ+j0d9xJFixez1VKD6SvdIMfQv5ElssaSvpGT3XrOJEDTCarkkC4yD1Zbf5Asy6YfOq2t3Tiv3+5FAe713w09LHm85pQOpIGFIZM59cYIRRoKAV8nIbkcrfXkHJneEVNScxP1jQH9JoRmxUeJftC3RTvoi1NbGuk8StUjqWY+8dFDCBctsruVYJW9N+QgYVzwpWnJOUpmIceu8ttWHve/bpJRP1TVb99O/QUTBYWQeAWkvj/nfBkxejoONwGZhRDW1Ws8KY5sySsoQLw0iU+OeLZcV1bycvkze0Uowk2BaEdUVQi7i+CwixP9INk+TbLZLHKiMtr/D+nfTyw5AUOH22AcgvrYBPgvdxM0ep2D4XwLPbVkoAAHrJfCsJb26cdjgySWm26tpEQVnHBErCMhcU8/vQLlJh3poDvjuHQt1J1KE0qN+6Unty69gSnRvqxFL2nBnbpEPuKZS8LeWtXnoGDRSsFwipRvLGp8/jvMNyxqu4SCJQAT+ZmW4j/fijxQsJ8v2dTK9MWue9H2XeuUuFCLCOGHnKKil38FHEsazzknQkqZzpZPNMtoCdAe0uBvhCIIdFIUo5wauxHtfutkyb3EE5hU14WkOp8C+NR3slIarOH30yPOG27id4=
+  provider: s3
+  access_key_id:
+    secure: F0dwodNvuyWOL1tYywSMx5ctm/gq2TRH25hgh8JZcQYcbVl/DJo9EAWZiLzww/Ax8Ixp33Syqxk0agDhYY4ay6p5u7HX7MT8yEUKDargy9QHM46+BUM8q55oqKoTaA/9vF6c0I1aIFgfBmbveah727U02aQbcTFujRhwunehK6sgUpWocslo1/Guk1Ha16pB4zweTFioWlAHMBOFlOobxVe2tvtLGLRHxeQuBFX9igA+bKmqkkbu/Xcp7wSiq9niTIczNtOadTIHBfrRfCEOV6ZbujGUA5E8pP8tAApmI9mY2WfpEHSFt4qphoWJh4OsaIU6kUJCADtyx0pAOP/lVfqlzB3rkoqXoVEWKBwBPFZ1La4gVLtZu0yaNC1TkR1iKhqzP1oYigjOvIz58fWYPLnc5hhz8akVWNanh84IdZE8CkPZhzUyew21UFC6BEHAWUiu6EsA051fLPPw47O5oXyGqF1ujS3QsLYOExFkRWhyailhhF8sU+zFXw7RmR2CXnnpJKS58we4RSgfDVncalzoLVQ1Gy8QLYzmCNITjLGY6Dg5d5lWI2XeJZXRAOhkppG04l4Ksmw4cDZOJ6QxjEBj/Y02N7o2g9OqfcJyO/3LXGnwAgopKZhLQxFeXZgoZbSXy0Gn4n4/28FdlTlwp3DHuavBRFaLNYPyBtgji2U=
+  bucket: rikuntestibuketti
+  region: eu-west-1
+  skip_cleanup: true
+  local_dir: dist
+  branches:
+    only:
+    - master
+before_install:
+- openssl aes-256-cbc -K $encrypted_840964d7b350_key -iv $encrypted_840964d7b350_iv
+  -in .env.enc -out .env -d
