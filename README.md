@@ -9,6 +9,12 @@
   - IAM role for accessing S3 items
   - Cognito user pool and identity pool for managing admin users 
 - Updated .env to match AWS settings
+
+### AWS Setup
+
+
+[Tutorial](https://docs.google.com/document/d/e/2PACX-1vTgZOdXz2sqJ4MH8ISCl3Eb7Ci5XFjw-wULsXHNcgo6dWrFo7axGaOOS6f5yJY4fSyM6QtpaFQUVbAJ/pub)
+
 ### Build Setup
 
 ``` bash
