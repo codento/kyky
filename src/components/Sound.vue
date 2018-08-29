@@ -4,10 +4,8 @@
       <source :src="soundUrl">
       Your browser does not support the audio element.
     </audio>
-    <div class="container" @click="playAudio">
       <div v-if="adminview" style="max-width: 100px;">{{ this.sound }}</div>
-      <button :style="'font-size: ' + getIconSize() + 'em; color: black; text-align: center;'" class="fas fa-volume-up" @click="playAudio" />
-    </div>
+      <img class="headericon" id="voicebutton" src="../../static/voiceoff.png" @click="playAudio" />
   </div>
 </template>
 
@@ -22,11 +20,16 @@ export default {
   ],
   methods: {
     playAudio: function () {
+      var voiceoff = "../../static/voiceoff.png";
+      var voiceon = "../../static/voiceon.png";
+      var imgElement = document.getElementById('voicebutton');
       if (this.deleteMode) {
         this.$emit('deleteSound')
       } else {
-        EventBus.$emit('playAudio', this.sound)
+        imgElement.src = (imgElement.src === voiceoff)? voiceon : voiceoff;
+        EventBus.$emit('playAudio', this.sound);
       }
+
     },
     getIconSize: function () {
       const windowHeight = document.documentElement.clientHeight

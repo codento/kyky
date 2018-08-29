@@ -7,6 +7,8 @@ import Amplify from 'aws-amplify'
 import './assets/common.css'
 import './assets/animations.css'
 
+require('dotenv').config()
+
 Vue.config.productionTip = false
 
 // Aws amplify

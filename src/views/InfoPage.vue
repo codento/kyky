@@ -1,18 +1,26 @@
 <template>
   <div class="bg" :style="bgStyle(true)" id="info">
+    <div class="header">
+        <input class="helsinki" type="image" src="../../static/helsinki-logo.png">
+        <sound
+            v-if="node.audio[languageIndex]"
+            :sound="node.audio[languageIndex]"/>
+        <input class="headericon" type="image" src="../../static/info.png">
+        <img
+          class="headericon"
+          type="image"
+          @click="changeLanguage()"
+          :src="'../../static/' + selectedLanguage + '-icon.png'"/>
+
+    </div>
+    <PathStack/>
+    <div class="arrow">
+      <img class="arrow" type="image" src="../../static/uparrow.png" v-if="parent" @click="moveToParent">
+    </div>
+
     <v-touch
-      @swipedown="moveToParent"
-      @swipeleft="moveToSibling(true)"
-      @swiperight="moveToSibling(false)">
-      <div id="uparrow" v-if="parent" @click="moveToParent">
-        <i style="font-size: 3.2em; color: black; text-align: center;" class="fas fa-angle-up" />
-      </div>
-      <div id="leftarrow" v-if="parent && parent.children.length > 1" @click="moveToSibling(false)">
-        <i style="font-size: 3.2em; color: black; text-align: center;" class="fas fa-angle-left" />
-      </div>
-      <div id="rightarrow" v-if="parent && parent.children.length > 1" @click="moveToSibling(true)">
-        <i style="font-size: 3.2em; color: black; text-align: center;" class="fas fa-angle-right" />
-      </div>
+      @swipeup="moveToParent">
+
       <transition :name="transitionOrientation" mode="out-in">
         <Node
           :node="node"
@@ -23,32 +31,14 @@
           :style="bgStyle(false)"
           />
       </transition>
-      <div class="navigationarea" v-if="!showModal">
-        <img
-          class="language-btn"
-          type="image"
-          @click="changeLanguage()"
-          :src="'../../static/' + selectedLanguage + '-icon.svg'"/>
-        <div>
-          <div class="mapIcon" style="cursor: pointer;" v-if="node.location">
-            <i :style="'font-size: ' + getMapIconSize() + 'em'" class="fas fa-compass" data-toggle="modal" data-target="#exampleModal"></i>
-          </div>
-        </div>
-        <div>
-          <div id="soundarea" style="min-height: 50px;">
-            <sound
-              v-if="node.audio[languageIndex]"
-              :sound="node.audio[languageIndex]"/>
-          </div>
-        </div>
-      </div>
     </v-touch>
     <modal v-show="showModal"/>
+
   </div>
 </template>
 
 <script>
-import {Node, Sound, Modal} from '../components/'
+import {Node, Sound, Modal, Header, PathStack} from '../components/'
 import Auth from '../auth'
 import {nodemixin, languagemixin} from '../mixins/'
 import { getJSONfromS3 } from '../services/jsonService'
@@ -59,7 +49,9 @@ export default {
   components: {
     Node,
     Sound,
-    Modal
+    Modal,
+    Header,
+    PathStack
   },
   mixins: [nodemixin, languagemixin],
   data () {
@@ -67,7 +59,7 @@ export default {
       /* eslint-disable */
        loggedIn: false,
        transitionOrientation: 'slidedown',
-       animations: ['slideleft', 'slideright', 'slideup', 'slidedown'],
+       animations: ['slideup', 'slidedown'],
        deleteMode: false,
        user: Auth.user,
        path: [],
@@ -123,25 +115,14 @@ export default {
 </script>
 
 <style>
-#uparrow {
+.arrow {
   position: absolute;
-  top: 0;
-  width: 100vw;
-  z-index: 2;
-}
-#leftarrow {
-  position: absolute;
-  left: 0;
-  top: 30vh;
-  padding-left: 5px;
-  z-index: 2;
-}
-#rightarrow {
-  position: absolute;
-  right: 0;
-  top: 30vh;
-  padding-right: 5px;
-  z-index: 2;
+  display: block;
+  margin-left: 45%;
+  margin-right: 50%;
+  bottom: 0;
+  height: 10vw;
+  z-index: 6;
 }
 .mapIcon {
   width: 100vw;
@@ -150,8 +131,29 @@ export default {
   bottom: 20px;
 }
 .navigationarea {
-  position: fixed;
-  bottom: 0px;
+  position: relative;
+  top: 0px;
   width: 100%;
+}
+.header {
+  background-color: #0000BF;
+  height: 15vh;
+}
+.helsinki {
+  object-fit: contain;
+  position: absolute;
+  top:0px;
+  left:0px;
+  outline: none;
+  margin: 3vw;
+  height: 10vh;
+  padding: 3px;
+}
+.headericon {
+  object-fit: contain;
+  position:relative;
+  float:right;
+  margin: 4vw;
+  height: 8vh;
 }
 </style>

@@ -9,7 +9,7 @@ export default {
        node: initialNode,
        parent: null,
        index: 0,
-       animations: ['slideleft', 'slideright', 'slideup', 'slidedown'],
+       animations: ['slideup', 'slidedown'],
        audios: [],
        colorIndex: 2,
        prevColor: '',
@@ -70,7 +70,7 @@ export default {
         this.transitionOrientation = 'slideup'
         if(node.audio[this.languageIndex]){  EventBus.$emit('playAudio',node.audio[this.languageIndex])}
         this.path.push(this.node.icon)
-      } 
+      }
       this.prevColor = this.colors[this.colorIndex]
 
       this.colorIndex++
