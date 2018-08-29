@@ -1,12 +1,11 @@
 .path {
   position: absolute;
-  top: 0;
-  right: 10px
+  top: 14vh;
+  margin-left: 4vw;
 }
 
 .box {
   margin: 8px;
-  padding: 0;
   border-width: 0px;
   background: rgba(95, 157, 159,0.6);
 }

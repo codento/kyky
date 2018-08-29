@@ -46,8 +46,10 @@ export default {
   outline: none;
   position:relative;
   float: right;
-  margin: 4vw;
-  height: 8vh;
+  margin-top: 15px;
+  margin-right: 4vw;
+  height: 7vh;
+  max-height: 13vw;
 }
 .helsinki {
   object-fit: contain;
@@ -55,7 +57,10 @@ export default {
   top:0px;
   left:0px;
   outline: none;
-  margin: 3vw;
+  margin-top: 10px;
+  margin-left: 3vw;
+  margin-right: 3vw;
+  margin-bottom: 3vw;
   height: 10vh;
   padding: 3px;
 }

@@ -22,6 +22,7 @@
           <transition :name="transitionOrientation" mode="out-in">
             <Node
               :node="node"
+              :adminview="true"
               :key="node.id"
               @moveToChild="moveToChild"
               :selectedLanguage="languageIndex"
@@ -60,7 +61,7 @@
               class="language-btn"
               type="image"
               @click="changeLanguage()"
-              :src="'../../static/'+ selectedLanguage +'-icon.svg'"/>
+              :src="'../../static/'+ selectedLanguage +'-icon.png'"/>
           </div>
         </v-touch>
       </div>

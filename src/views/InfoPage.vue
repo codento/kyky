@@ -2,8 +2,8 @@
   <div class="bg" :style="bgStyle(true)" id="info">
     <div class="header">
         <input class="helsinki" type="image" src="../../static/helsinki-logo.png">
+        <!-- tämä tuohon alas jos audionappi vain silloin kuin audiota; v-if="node.audio[languageIndex]" -->
         <sound
-            v-if="node.audio[languageIndex]"
             :sound="node.audio[languageIndex]"/>
         <input class="headericon" type="image" src="../../static/info.png">
         <img
@@ -11,16 +11,17 @@
           type="image"
           @click="changeLanguage()"
           :src="'../../static/' + selectedLanguage + '-icon.png'"/>
-
+      <PathStack
+        :path="path"
+        :colors="colors"
+        :moveToParent="moveToParent"/>
     </div>
-    <PathStack/>
     <div class="arrow">
       <img class="arrow" type="image" src="../../static/uparrow.png" v-if="parent" @click="moveToParent">
     </div>
 
     <v-touch
       @swipeup="moveToParent">
-
       <transition :name="transitionOrientation" mode="out-in">
         <Node
           :node="node"
@@ -38,9 +39,9 @@
 </template>
 
 <script>
-import {Node, Sound, Modal, Header, PathStack} from '../components/'
+import { Node, Sound, Modal, Header, PathStack } from '../components/'
 import Auth from '../auth'
-import {nodemixin, languagemixin} from '../mixins/'
+import { nodemixin, languagemixin } from '../mixins/'
 import { getJSONfromS3 } from '../services/jsonService'
 import EventBus from '../utils/eventBus'
 
@@ -120,8 +121,9 @@ export default {
   display: block;
   margin-left: 45%;
   margin-right: 50%;
-  bottom: 0;
+  bottom: 1vh;
   height: 10vw;
+  max-height: 150px;
   z-index: 6;
 }
 .mapIcon {
@@ -137,7 +139,7 @@ export default {
 }
 .header {
   background-color: #0000BF;
-  height: 15vh;
+  height: 22vh;
 }
 .helsinki {
   object-fit: contain;
@@ -145,7 +147,10 @@ export default {
   top:0px;
   left:0px;
   outline: none;
-  margin: 3vw;
+  margin-top: 10px;
+  margin-left: 3vw;
+  margin-right: 3vw;
+  margin-bottom: 3vw;
   height: 10vh;
   padding: 3px;
 }
@@ -153,7 +158,9 @@ export default {
   object-fit: contain;
   position:relative;
   float:right;
-  margin: 4vw;
-  height: 8vh;
+  margin-top: 15px;
+  margin-right: 4vw;
+  height: 7vh;
+  max-height: 13vw;
 }
 </style>
