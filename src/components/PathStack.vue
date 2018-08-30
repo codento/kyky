@@ -27,7 +27,6 @@ export default {
       return 'https://' + process.env.RESOURCEBUCKET + '.s3.eu-west-1.amazonaws.com/public/' + route
     },
     getButtonColour: function (index) {
-      console.log(this.colors)
       return 'background-color: ' + this.colors[index]
     }
   },

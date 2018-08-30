@@ -2,7 +2,7 @@
   <div class="modal-mask">
     <div class="modal-container">
       <div class="modal-body">
-        <i style="font-size: 6em" class="fas fa-sync"></i>
+        <input class="turn-phone" type="image" src="../../static/turnPhone.png">
       </div>
     </div>
   </div>
@@ -31,7 +31,7 @@
   height: 100vh;
   margin: auto;
   padding: auto auto;
-  background-color: rgba(255,255,255,0.85);
+  background-color: rgba(0,0,191,1);
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
   transition: all .3s ease;
@@ -41,9 +41,14 @@
 .modal-body {
   margin: 0;
   position: absolute;
-  top: 20%;
+  top: 0%;
   left: 50%;
-  transform: translate(-50%)
+  transform: translate(-50%);
+
 }
 
+.turn-phone {
+  max-height: 200px;
+  height: 70vh;
+}
 </style>

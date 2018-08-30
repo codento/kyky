@@ -121,7 +121,7 @@ export default {
   display: block;
   margin-left: 45%;
   margin-right: 50%;
-  bottom: 1vh;
+  bottom: 5vh;
   height: 10vw;
   max-height: 150px;
   z-index: 6;

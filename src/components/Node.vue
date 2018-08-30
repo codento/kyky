@@ -1,13 +1,13 @@
 <template>
-<div style="height: 100vh">
+<div style="height: 78vh;">
   <div :key="node.id" class="container iconarea" v-if="hasChildren">
     <div
       v-for="(n, index) in node.children"
       :key="n.id"
       class="btn">
         <div v-if="adminview" style="height: 70px; max-width: 130px; word-wrap: break-word;">
-          <p style="white-space: pre-line; font-size: 13px;">
-            {{ n.audio[selectedLanguage] }}
+          <p style="white-space: pre-line; font-size: 11.5px;">
+            {{ n.previewAudio[selectedLanguage] }}
           </p>
         </div>
        <v-touch
