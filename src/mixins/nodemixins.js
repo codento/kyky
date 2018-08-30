@@ -26,7 +26,8 @@ export default {
         '#ffc61e',
         '#dedfe1',
         '#c2a251',
-       ]
+       ],
+       muted: false
     }
   },
   methods: {
@@ -36,6 +37,9 @@ export default {
       } else {
         return 'z-index: 0; background-color: ' + this.colors[this.colorIndex]
       }
+    },
+    flipMuted () {
+      this.muted = !this.muted
     },
     moveToParent () {
       if (isRootNode(this.node.id)) {

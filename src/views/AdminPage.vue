@@ -48,12 +48,14 @@
           </div-->
           <div class="navigationarea">
             <div id="soundarea" style="min-height: 50px;">
+              <!-- Made always visible by removing: v-if="node.audio[languageIndex]" -->
               <sound
-                v-if="node.audio[languageIndex]"
                 :adminview="true"
                 :sound="node.audio[languageIndex]"
                 :deleteMode="deleteMode"
-                @deleteSound="deleteSound"/>
+                @deleteSound="deleteSound"
+                :flipMuted="flipMuted"
+                :muted="muted"/>
             </div>
             <div class="mapIcon" style="cursor: pointer;" v-if="node.location">
               <i :style="'font-size: ' + getMapIconSize() + 'em'" class="fas fa-compass" data-toggle="modal" data-target="#exampleModal"></i>
