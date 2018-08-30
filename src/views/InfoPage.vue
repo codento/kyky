@@ -3,8 +3,7 @@
     <div class="header">
         <input class="helsinki" type="image" src="../../static/helsinki-logo.png">
         <!-- tämä tuohon alas jos audionappi vain silloin kuin audiota; v-if="node.audio[languageIndex]" -->
-        <sound
-            :sound="node.audio[languageIndex]"/>
+        <sound :sound="node.audio[languageIndex]" :muted="muted" :flipMuted="flipMuted"/>
         <input class="headericon" type="image" src="../../static/info.png">
         <img
           class="headericon"
@@ -66,7 +65,8 @@ export default {
        path: [],
        pushed: false,
        portrait: '',
-       showModal: false
+       showModal: false,
+       muted: false
     }
     /* eslint-enable */
   },
@@ -91,6 +91,9 @@ export default {
       } else {
         this.showModal = true
       }
+    },
+    flipMuted () {
+      this.muted = !this.muted
     }
   },
   created: function () {
@@ -123,7 +126,7 @@ export default {
   margin-right: 50%;
   bottom: 5vh;
   height: 10vw;
-  max-height: 150px;
+  max-height: 110px;
   z-index: 6;
 }
 .mapIcon {

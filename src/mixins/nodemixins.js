@@ -68,7 +68,7 @@ export default {
         this.parent = this.node
         this.node = this.node.children[index]
         this.transitionOrientation = 'slideup'
-        if(node.audio[this.languageIndex]){  EventBus.$emit('playAudio',node.audio[this.languageIndex])}
+        if(node.audio[this.languageIndex] && !this.muted){  EventBus.$emit('playAudio',node.audio[this.languageIndex])}
         this.path.push(this.node.icon)
       }
       this.prevColor = this.colors[this.colorIndex]

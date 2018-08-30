@@ -30,6 +30,9 @@ export default {
         player.play()
       }
     })
+    EventBus.$on('stopAudio', function () {
+      player.load()
+    })
   },
   created: function () {
     getJSONfromS3()

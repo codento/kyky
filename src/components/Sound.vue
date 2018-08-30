@@ -5,7 +5,11 @@
       Your browser does not support the audio element.
     </audio>
       <div v-if="adminview" style="max-width: 100px;">{{ this.sound }}</div>
-      <img class="headericon" id="voicebutton" src="../../static/voiceoff.png" @click="playAudio" />
+      <img
+        class="headericon"
+        id="voicebutton"
+        :src="muted ? '../../static/voiceoff.png' : '../../static/voiceon.png'"
+        @click="handleVoiceButtonClick" />
   </div>
 </template>
 
@@ -16,7 +20,9 @@ export default {
   props: [
     'sound',
     'deleteMode',
-    'adminview'
+    'adminview',
+    'muted',
+    'flipMuted'
   ],
   methods: {
     playAudio: function () {
@@ -30,6 +36,15 @@ export default {
         EventBus.$emit('playAudio', this.sound);
       }
 
+    },
+    handleVoiceButtonClick: function () {
+      if (this.muted) {
+        this.flipMuted()
+        this.playAudio()
+      } else {
+        this.flipMuted()
+        EventBus.$emit('stopAudio');
+      }
     },
     getIconSize: function () {
       const windowHeight = document.documentElement.clientHeight
