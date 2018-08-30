@@ -18,7 +18,8 @@
           @addLocation="addLocation"/>
       </div>
       <div class="col-xl-10 col-md-9 col-sm-8 col-7">
-        <v-touch v-on:swipedown="moveToParent" v-on:swipeleft="moveToSibling(true)" v-on:swiperight="moveToSibling(false)">
+        <!-- These taken from below:  v-on:swipeleft="moveToSibling(true)" v-on:swiperight="moveToSibling(false)" -->
+        <v-touch v-on:swiperight="moveToParent">
           <transition :name="transitionOrientation" mode="out-in">
             <Node
               :node="node"
@@ -36,15 +37,15 @@
             </transition>
             <div class="row">
           </div>
-          <div id="uparrow" v-if="parent" @click="moveToParent">
-            <i style="font-size: 3.2em; color: black; text-align: center;" class="fas fa-angle-up" />
-          </div>
-          <div id="leftarrow" v-if="parent && parent.children.length > 1" @click="moveToSibling(false)">
+          <div id="leftarrow" v-if="parent" @click="moveToParent">
             <i style="font-size: 3.2em; color: black; text-align: center;" class="fas fa-angle-left" />
           </div>
-          <div id="rightarrow" v-if="parent && parent.children.length > 1" @click="moveToSibling(true)">
+          <!--div id="leftarrow" v-if="parent && parent.children.length > 1" @click="moveToSibling(false)">
+            <i style="font-size: 3.2em; color: black; text-align: center;" class="fas fa-angle-left" />
+          </div-->
+          <!--div id="rightarrow" v-if="parent && parent.children.length > 1" @click="moveToSibling(true)">
             <i style="font-size: 3.2em; color: black; text-align: center;" class="fas fa-angle-right" />
-          </div>
+          </div-->
           <div class="navigationarea">
             <div id="soundarea" style="min-height: 50px;">
               <sound

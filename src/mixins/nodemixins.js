@@ -9,7 +9,7 @@ export default {
        node: initialNode,
        parent: null,
        index: 0,
-       animations: ['slideup', 'slidedown'],
+       animations: ['slideleft', 'slideright'],
        audios: [],
        colorIndex: 2,
        prevColor: '',
@@ -41,7 +41,7 @@ export default {
       if (isRootNode(this.node.id)) {
         this.node = this.parent
         this.parent = this.parent.parent
-        this.transitionOrientation = 'slidedown'
+        this.transitionOrientation = 'slideright'
         this.path.pop()
         this.prevColor = this.colors[this.colorIndex]
         this.colorIndex--
@@ -54,7 +54,7 @@ export default {
         while (!childs[ mod(this.index, this.parent.children.length) ].icon || childs[ mod(this.index, this.parent.children.length) ].url) {
           left ? this.index++ : this.index--
         }
-        this.transitionOrientation = (left) ? 'slideleft' : 'slideright'
+        this.transitionOrientation = (left) ? 'slideup' : 'slidedown'
         this.node = this.parent.children[ mod(this.index, this.parent.children.length) ]
         this.path.splice(this.path.length-1, 1, this.node.icon)
         this.prevColor = this.colors[this.colorIndex]
@@ -67,7 +67,7 @@ export default {
         this.node.parent = this.parent
         this.parent = this.node
         this.node = this.node.children[index]
-        this.transitionOrientation = 'slideup'
+        this.transitionOrientation = 'slideleft'
         if(node.audio[this.languageIndex] && !this.muted){  EventBus.$emit('playAudio',node.audio[this.languageIndex])}
         this.path.push(this.node.icon)
       }

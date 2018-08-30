@@ -1,5 +1,5 @@
 <template>
-<div style="height: 78vh;">
+<div :style="adminview ? 'height: 100vh;' : 'height: 78vh'">
   <div :key="node.id" class="container iconarea" v-if="hasChildren">
     <div
       v-for="(n, index) in node.children"

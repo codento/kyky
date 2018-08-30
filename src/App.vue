@@ -86,6 +86,7 @@ body {
   position: fixed;
   bottom: 20px;
   right: 5vw;
+  background-color: rgba(0,0,0,0.3)
 }
 #info {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

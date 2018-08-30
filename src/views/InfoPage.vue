@@ -20,7 +20,7 @@
     </div>
 
     <v-touch
-      @swipeup="moveToParent">
+      @swiperight="moveToParent">
       <transition :name="transitionOrientation" mode="out-in">
         <Node
           :node="node"
@@ -58,8 +58,8 @@ export default {
     return {
       /* eslint-disable */
        loggedIn: false,
-       transitionOrientation: 'slidedown',
-       animations: ['slideup', 'slidedown'],
+       transitionOrientation: 'slideleft',
+       animations: ['slideleft', 'slideright'],
        deleteMode: false,
        user: Auth.user,
        path: [],

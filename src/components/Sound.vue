@@ -4,10 +4,17 @@
       <source :src="soundUrl">
       Your browser does not support the audio element.
     </audio>
-      <div v-if="adminview" style="max-width: 100px;">{{ this.sound }}</div>
+      <div v-if="adminview" style="max-width: 100px;">
+        <p style="position: absolute; bottom: 150px; left: 2%;">
+          Sivun ääni: <br>
+          <br>
+          {{ this.sound }}
+        </p>
+      </div>
       <img
         class="headericon"
         id="voicebutton"
+        style="max-height: 150px;"
         :src="muted ? '../../static/voiceoff.png' : '../../static/voiceon.png'"
         @click="handleVoiceButtonClick" />
   </div>
@@ -58,3 +65,4 @@ export default {
   }
 }
 </script>
+
