@@ -51,6 +51,9 @@ export default {
         this.colorIndex--
       }
     },
+    handleInfoButtonClick () {
+      EventBus.$emit('playAudio', 'audio/generalInformationClip-' + this.languageIndex)
+    },
     moveToSibling (left) {
       if (isRootNode(this.node.id)) {
         left ? this.index++ : this.index--

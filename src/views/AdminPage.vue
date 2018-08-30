@@ -60,6 +60,14 @@
             <div class="mapIcon" style="cursor: pointer;" v-if="node.location">
               <i :style="'font-size: ' + getMapIconSize() + 'em'" class="fas fa-compass" data-toggle="modal" data-target="#exampleModal"></i>
             </div>
+            <div>
+              <input
+                class="headericon"
+                style="background-color: rgba(0,0,0,0.3); max-height: 150px; position: absolute; bottom: 20px; left: 40%; transform: translate(-50%)"
+                type="image"
+                @click="handleInfoButtonClick"
+                src="../../static/info.png">
+            </div>
             <img
               class="language-btn"
               type="image"
