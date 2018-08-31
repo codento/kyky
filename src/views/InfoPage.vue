@@ -15,8 +15,8 @@
         :colors="colors"
         :moveToParent="moveToParent"/>
     </div>
-    <div class="arrow">
-      <img class="arrow" type="image" src="../../static/uparrow.png" v-if="parent" @click="moveToParent">
+    <div>
+      <img class="arrow" type="image" src="../../static/uparrow.png" v-if="parent" @pointerdown="moveToParent">
     </div>
 
     <v-touch
@@ -120,14 +120,12 @@ export default {
 
 <style>
 .arrow {
-  position: absolute;
-  display: block;
-  margin-left: 45%;
-  margin-right: 50%;
+  position: fixed;
   bottom: 5vh;
+  left: 48vw;
   height: 10vw;
   max-height: 110px;
-  z-index: 6;
+  z-index: 1116;
 }
 .mapIcon {
   width: 100vw;

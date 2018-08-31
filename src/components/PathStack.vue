@@ -2,12 +2,12 @@
   <div class="path">
     <ul>
       <li >
-        <button class="box" @click="moveToParent" :style="getButtonColour(2)">
+        <button class="box" @click="hamdlePathButtonClick" :style="getButtonColour(2)">
           <img id="icon" src="../../static/helsinkiIcon.png" :height="deviceDimension.height / 15" :width="deviceDimension.height / 15"/>
         </button>
       </li>
       <li v-for="(waypoint, index) in path" :key="index">
-        <button class="box" @click="moveToParent" :style="getButtonColour(index+3)">
+        <button class="box" @click="hamdlePathButtonClick(index)" :style="getButtonColour(index+3)">
           <img id="icon" :src="iconUrl(waypoint)" :height="deviceDimension.height / 15" :width="deviceDimension.height / 15"/>
         </button>
       </li>
@@ -28,6 +28,12 @@ export default {
     },
     getButtonColour: function (index) {
       return 'background-color: ' + this.colors[index]
+    },
+    hamdlePathButtonClick: function (index) {
+      let steps = this.path.length - (Number(index)+1  || 0)
+      for (let i = 0; i < steps; i++) {
+        this.moveToParent()
+      }
     }
   },
   computed: {
