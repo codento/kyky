@@ -45,8 +45,8 @@ export default {
 .box {
     margin-top: 0px;
     margin-bottom: 0px;
-    width: 8vh;
-    height: 8vh;
+    width: 9vh;
+    height: 9vh;
     outline: none;
 }
 ul {

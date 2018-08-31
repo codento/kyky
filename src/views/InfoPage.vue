@@ -142,7 +142,7 @@ export default {
 }
 .header {
   background-color: #0000BF;
-  height: 22vh;
+  height: 23vh;
 }
 .helsinki {
   object-fit: contain;
