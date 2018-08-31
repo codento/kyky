@@ -63,7 +63,14 @@
             <div>
               <input
                 class="headericon"
-                style="background-color: rgba(0,0,0,0.3); max-height: 150px; position: absolute; bottom: 20px; left: 40%; transform: translate(-50%)"
+                style="
+                  background-color: rgba(0,0,0,0.3);
+                  max-height: 110px;
+                  position: absolute;
+                  bottom: 150px;
+                  left: 20px; 
+                  transform: 
+                  translate(-50%)"
                 type="image"
                 @click="handleInfoButtonClick"
                 src="../../static/info.png">
