@@ -83,8 +83,6 @@ export default {
       if (node.url){
         window.open(node.url,"_self")
       }
-      //this.prevColor = this.colors[this.colorIndex]
-      //this.colorIndex++
     },
   }
 }
