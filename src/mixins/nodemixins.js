@@ -16,10 +16,10 @@ export default {
        colors: [
         '#f5a3c7',
         '#ffc61e',
-        '#ffffff',
+        '#f5a3c7',
         '#00d7a7',
-        '#dedfe1',
-        '#c2a251',
+        '#ffc61e',
+        '#fd4f00',
         '#f5a3c7',
         '#ffe977',
         '#009246',
@@ -77,13 +77,14 @@ export default {
         this.transitionOrientation = 'slideleft'
         if(node.audio[this.languageIndex] && !this.muted){  EventBus.$emit('playAudio',node.audio[this.languageIndex])}
         this.path.push(this.node.icon)
+        this.prevColor = this.colors[this.colorIndex]
+        this.colorIndex++
       }
-      this.prevColor = this.colors[this.colorIndex]
-
-      this.colorIndex++
       if (node.url){
         window.open(node.url,"_self")
       }
+      //this.prevColor = this.colors[this.colorIndex]
+      //this.colorIndex++
     },
   }
 }

@@ -86,7 +86,7 @@ export default {
     getColor: function (n) {
       let color = 'background: '
       if (n.url) {
-        color += 'rgba(214,194,160,1); border-radius: 60px;'
+        color += 'rgba(255,255,255,1); border-radius: 60px;'
       }
       if (n.icon === '') {
         color += this.view === 'admin' ? 'rgba(4,4,0,0.1);' : 'rgba(4,4,0,0);'

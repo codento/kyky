@@ -7,7 +7,7 @@
 .box {
   margin: 8px;
   border-width: 0px;
-  background: rgba(235, 245, 255, 1);
+  background: rgba(255, 255, 255, 1);
 }
 .modal-backdrop {
   pointer-events: none;
