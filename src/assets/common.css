@@ -1,14 +1,13 @@
 .path {
   position: absolute;
-  top: 0;
-  right: 10px
+  top: 14vh;
+  margin-left: 3vw;
 }
 
 .box {
   margin: 8px;
-  padding: 0;
   border-width: 0px;
-  background: rgba(95, 157, 159,0.6);
+  background: rgba(255, 255, 255, 1);
 }
 .modal-backdrop {
   pointer-events: none;

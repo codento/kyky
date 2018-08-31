@@ -20,6 +20,20 @@
         Aseta sivun ääni
       </label>
     </form>
+    <form @change="handleInfoAudioUpload">
+      <input
+        id="infoaudiofile"
+        name="infoaudiofile"
+        type="file"
+        accept="audio/*"
+        capture>
+      <label
+        id="infoaudiolabel"
+        for="infoaudiofile"
+        style="width: 100%">
+        Aseta info-ääni
+      </label>
+    </form>
     <form @submit.prevent="() => addMaps()" id="mapsLocation">
       <label>Karttamerkki</label>
       <input class="form-control" id="locationInput" v-model="node.location" type="text" placeholder="Lisää Karttamerkki"> <br>
@@ -35,7 +49,7 @@
 </template>
 
 <script>
-import { saveAudio } from '../services/audioService'
+import { saveAudio, saveInfoAudio } from '../services/audioService'
 import { saveIcon } from '../services/iconService'
 import Auth from '../auth'
 import {verifyProtocol, getPrefix} from '../utils'
@@ -82,11 +96,17 @@ export default {
         audio: this.node.audio
       })
     },
-    // TODO: COMBINE THE NEXT TWO METHODS
+    // TODO: COMBINE THE NEXT THREE METHODS
+    handleInfoAudioUpload: function () {
+      const file = document.getElementById('infoaudiofile').files[0]
+      saveInfoAudio(file, this.selectedLanguage).then((res) => {
+        console.log(res)
+      })
+    },
     handleAudioUpload: function (file) {
       const audioInput = !(file instanceof Event) ? file : document.getElementById('audiofile').files[0]
-      if (file && file.size > 100000) {
-        alert('Suurin sallittu tiedosto koko on 100kb')
+      if (file && file.size > 400000) {
+        alert('Suurin sallittu tiedosto koko on 400kb')
         return
       }
       saveAudio(audioInput).then((res) => {
@@ -152,6 +172,27 @@ input{
 
 #audiofile:focus + label,
 #audiofile + label:hover {
+  background-color: orange;
+}
+
+#infoaudiofile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+#infoaudiofile + label {
+  color: white;
+  background-color: rgb(130, 137, 71);
+  display: inline-block;
+  cursor: pointer;
+  padding: 20px;
+}
+
+#infoaudiofile:focus + label,
+#infoaudiofile + label:hover {
   background-color: orange;
 }
 #iconfile {

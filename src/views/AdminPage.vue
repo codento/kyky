@@ -18,10 +18,12 @@
           @addLocation="addLocation"/>
       </div>
       <div class="col-xl-10 col-md-9 col-sm-8 col-7">
-        <v-touch v-on:swipedown="moveToParent" v-on:swipeleft="moveToSibling(true)" v-on:swiperight="moveToSibling(false)">
+        <!-- These taken from below:  v-on:swipeleft="moveToSibling(true)" v-on:swiperight="moveToSibling(false)" -->
+        <v-touch v-on:swiperight="moveToParent">
           <transition :name="transitionOrientation" mode="out-in">
             <Node
               :node="node"
+              :adminview="true"
               :key="node.id"
               @moveToChild="moveToChild"
               :selectedLanguage="languageIndex"
@@ -35,32 +37,49 @@
             </transition>
             <div class="row">
           </div>
-          <div id="uparrow" v-if="parent" @click="moveToParent">
-            <i style="font-size: 3.2em; color: black; text-align: center;" class="fas fa-angle-up" />
-          </div>
-          <div id="leftarrow" v-if="parent && parent.children.length > 1" @click="moveToSibling(false)">
+          <div id="leftarrow" v-if="parent" @click="moveToParent">
             <i style="font-size: 3.2em; color: black; text-align: center;" class="fas fa-angle-left" />
           </div>
-          <div id="rightarrow" v-if="parent && parent.children.length > 1" @click="moveToSibling(true)">
+          <!--div id="leftarrow" v-if="parent && parent.children.length > 1" @click="moveToSibling(false)">
+            <i style="font-size: 3.2em; color: black; text-align: center;" class="fas fa-angle-left" />
+          </div-->
+          <!--div id="rightarrow" v-if="parent && parent.children.length > 1" @click="moveToSibling(true)">
             <i style="font-size: 3.2em; color: black; text-align: center;" class="fas fa-angle-right" />
-          </div>
+          </div-->
           <div class="navigationarea">
             <div id="soundarea" style="min-height: 50px;">
+              <!-- Made always visible by removing: v-if="node.audio[languageIndex]" -->
               <sound
-                v-if="node.audio[languageIndex]"
                 :adminview="true"
                 :sound="node.audio[languageIndex]"
                 :deleteMode="deleteMode"
-                @deleteSound="deleteSound"/>
+                @deleteSound="deleteSound"
+                :flipMuted="flipMuted"
+                :muted="muted"/>
             </div>
             <div class="mapIcon" style="cursor: pointer;" v-if="node.location">
               <i :style="'font-size: ' + getMapIconSize() + 'em'" class="fas fa-compass" data-toggle="modal" data-target="#exampleModal"></i>
+            </div>
+            <div>
+              <input
+                class="headericon"
+                style="
+                  background-color: rgba(0,0,0,0.3);
+                  max-height: 110px;
+                  position: absolute;
+                  bottom: 150px;
+                  left: 20px; 
+                  transform: 
+                  translate(-50%)"
+                type="image"
+                @click="handleInfoButtonClick"
+                src="../../static/info.png">
             </div>
             <img
               class="language-btn"
               type="image"
               @click="changeLanguage()"
-              :src="'../../static/'+ selectedLanguage +'-icon.svg'"/>
+              :src="'../../static/'+ selectedLanguage +'-icon.png'"/>
           </div>
         </v-touch>
       </div>
@@ -150,7 +169,7 @@ export default {
     },
     audioPreviewUpload: function (file, index) {
       if (file && file.size > 400000) {
-        alert('Suurin sallittu tiedosto koko on 100kb')
+        alert('Suurin sallittu tiedosto koko on 400kb')
         return
       }
       saveAudio(file).then((res) => {

@@ -1,10 +1,15 @@
 <template>
-<div style="height: 100vh">
+<div :style="adminview ? 'height: 100vh;' : 'height: 78vh'">
   <div :key="node.id" class="container iconarea" v-if="hasChildren">
     <div
       v-for="(n, index) in node.children"
       :key="n.id"
       class="btn">
+        <div v-if="adminview" style="height: 70px; max-width: 130px; word-wrap: break-word;">
+          <p style="white-space: pre-line; font-size: 11.5px;">
+            {{ n.previewAudio[selectedLanguage] }}
+          </p>
+        </div>
        <v-touch
         ref="tapper"
         @tap="(e) => handleTap(e, index, n.id)"
@@ -63,7 +68,8 @@ export default {
     'node',
     'selectedLanguage',
     'deleteMode',
-    'view'
+    'view',
+    'adminview'
   ],
   computed: {
     mapsUrl () {
@@ -80,7 +86,7 @@ export default {
     getColor: function (n) {
       let color = 'background: '
       if (n.url) {
-        color += 'rgba(214,194,160,1);'
+        color += 'rgba(255,255,255,1); border-radius: 60px;'
       }
       if (n.icon === '') {
         color += this.view === 'admin' ? 'rgba(4,4,0,0.1);' : 'rgba(4,4,0,0);'
@@ -172,7 +178,7 @@ export default {
   max-height: 100px;
 }
 .loader {
-    border: 5px dotted rgb(2, 39, 107);
+    border: 5px dotted 2, 39, 107);
     border-radius: 30px;
     height: 50px;
     left: 50%;

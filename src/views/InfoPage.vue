@@ -1,18 +1,26 @@
 <template>
   <div class="bg" :style="bgStyle(true)" id="info">
+    <div class="header">
+        <input class="helsinki" type="image" src="../../static/helsinki-logo.png">
+        <!-- tämä tuohon alas jos audionappi vain silloin kuin audiota; v-if="node.audio[languageIndex]" -->
+        <sound :sound="node.audio[languageIndex]" :muted="muted" :flipMuted="flipMuted"/>
+        <input class="headericon" type="image" src="../../static/info.png" @click="handleInfoButtonClick">
+        <img
+          class="headericon"
+          type="image"
+          @click="changeLanguage()"
+          :src="'../../static/' + selectedLanguage + '-icon.png'"/>
+      <PathStack
+        :path="path"
+        :colors="colors"
+        :moveToParent="moveToParent"/>
+    </div>
+    <div>
+      <img class="arrow" type="image" src="../../static/uparrow.png" v-if="parent" @pointerdown="moveToParent">
+    </div>
+
     <v-touch
-      @swipedown="moveToParent"
-      @swipeleft="moveToSibling(true)"
-      @swiperight="moveToSibling(false)">
-      <div id="uparrow" v-if="parent" @click="moveToParent">
-        <i style="font-size: 3.2em; color: black; text-align: center;" class="fas fa-angle-up" />
-      </div>
-      <div id="leftarrow" v-if="parent && parent.children.length > 1" @click="moveToSibling(false)">
-        <i style="font-size: 3.2em; color: black; text-align: center;" class="fas fa-angle-left" />
-      </div>
-      <div id="rightarrow" v-if="parent && parent.children.length > 1" @click="moveToSibling(true)">
-        <i style="font-size: 3.2em; color: black; text-align: center;" class="fas fa-angle-right" />
-      </div>
+      @swiperight="moveToParent">
       <transition :name="transitionOrientation" mode="out-in">
         <Node
           :node="node"
@@ -23,34 +31,16 @@
           :style="bgStyle(false)"
           />
       </transition>
-      <div class="navigationarea" v-if="!showModal">
-        <img
-          class="language-btn"
-          type="image"
-          @click="changeLanguage()"
-          :src="'../../static/' + selectedLanguage + '-icon.svg'"/>
-        <div>
-          <div class="mapIcon" style="cursor: pointer;" v-if="node.location">
-            <i :style="'font-size: ' + getMapIconSize() + 'em'" class="fas fa-compass" data-toggle="modal" data-target="#exampleModal"></i>
-          </div>
-        </div>
-        <div>
-          <div id="soundarea" style="min-height: 50px;">
-            <sound
-              v-if="node.audio[languageIndex]"
-              :sound="node.audio[languageIndex]"/>
-          </div>
-        </div>
-      </div>
     </v-touch>
     <modal v-show="showModal"/>
+
   </div>
 </template>
 
 <script>
-import {Node, Sound, Modal} from '../components/'
+import { Node, Sound, Modal, Header, PathStack } from '../components/'
 import Auth from '../auth'
-import {nodemixin, languagemixin} from '../mixins/'
+import { nodemixin, languagemixin } from '../mixins/'
 import { getJSONfromS3 } from '../services/jsonService'
 import EventBus from '../utils/eventBus'
 
@@ -59,21 +49,24 @@ export default {
   components: {
     Node,
     Sound,
-    Modal
+    Modal,
+    Header,
+    PathStack
   },
   mixins: [nodemixin, languagemixin],
   data () {
     return {
       /* eslint-disable */
        loggedIn: false,
-       transitionOrientation: 'slidedown',
-       animations: ['slideleft', 'slideright', 'slideup', 'slidedown'],
+       transitionOrientation: 'slideleft',
+       animations: ['slideleft', 'slideright'],
        deleteMode: false,
        user: Auth.user,
        path: [],
        pushed: false,
        portrait: '',
-       showModal: false
+       showModal: false,
+       muted: false
     }
     /* eslint-enable */
   },
@@ -98,6 +91,9 @@ export default {
       } else {
         this.showModal = true
       }
+    },
+    flipMuted () {
+      this.muted = !this.muted
     }
   },
   created: function () {
@@ -123,25 +119,13 @@ export default {
 </script>
 
 <style>
-#uparrow {
-  position: absolute;
-  top: 0;
-  width: 100vw;
-  z-index: 2;
-}
-#leftarrow {
-  position: absolute;
-  left: 0;
-  top: 30vh;
-  padding-left: 5px;
-  z-index: 2;
-}
-#rightarrow {
-  position: absolute;
-  right: 0;
-  top: 30vh;
-  padding-right: 5px;
-  z-index: 2;
+.arrow {
+  position: fixed;
+  bottom: 5vh;
+  left: 48vw;
+  height: 10vw;
+  max-height: 110px;
+  z-index: 1116;
 }
 .mapIcon {
   width: 100vw;
@@ -150,8 +134,34 @@ export default {
   bottom: 20px;
 }
 .navigationarea {
-  position: fixed;
-  bottom: 0px;
+  position: relative;
+  top: 0px;
   width: 100%;
+}
+.header {
+  background-color: #0000BF;
+  height: 23vh;
+}
+.helsinki {
+  object-fit: contain;
+  position: absolute;
+  top:0px;
+  left:0px;
+  outline: none;
+  margin-top: 10px;
+  margin-left: 3vw;
+  margin-right: 3vw;
+  margin-bottom: 3vw;
+  height: 10vh;
+  padding: 3px;
+}
+.headericon {
+  object-fit: contain;
+  position:relative;
+  float:right;
+  margin-top: 15px;
+  margin-right: 4vw;
+  height: 7vh;
+  max-height: 13vw;
 }
 </style>

@@ -4,10 +4,19 @@
       <source :src="soundUrl">
       Your browser does not support the audio element.
     </audio>
-    <div class="container" @click="playAudio">
-      <div v-if="adminview" style="max-width: 100px;">{{ this.sound }}</div>
-      <button :style="'font-size: ' + getIconSize() + 'em; color: black; text-align: center;'" class="fas fa-volume-up" @click="playAudio" />
-    </div>
+      <div v-if="adminview" style="max-width: 100px;">
+        <p style="position: absolute; bottom: 150px; left: 2%;">
+          Sivun ääni: <br>
+          <br>
+          {{ this.sound }}
+        </p>
+      </div>
+      <img
+        class="headericon"
+        id="voicebutton"
+        style="max-height: 150px;"
+        :src="muted ? '../../static/voiceoff.png' : '../../static/voiceon.png'"
+        @click="handleVoiceButtonClick" />
   </div>
 </template>
 
@@ -18,14 +27,30 @@ export default {
   props: [
     'sound',
     'deleteMode',
-    'adminview'
+    'adminview',
+    'muted',
+    'flipMuted'
   ],
   methods: {
     playAudio: function () {
+      var voiceoff = "../../static/voiceoff.png";
+      var voiceon = "../../static/voiceon.png";
+      var imgElement = document.getElementById('voicebutton');
       if (this.deleteMode) {
         this.$emit('deleteSound')
       } else {
-        EventBus.$emit('playAudio', this.sound)
+        imgElement.src = (imgElement.src === voiceoff)? voiceon : voiceoff;
+        EventBus.$emit('playAudio', this.sound);
+      }
+
+    },
+    handleVoiceButtonClick: function () {
+      if (this.muted) {
+        this.flipMuted()
+        this.playAudio()
+      } else {
+        this.flipMuted()
+        EventBus.$emit('stopAudio');
       }
     },
     getIconSize: function () {
@@ -40,3 +65,4 @@ export default {
   }
 }
 </script>
+
