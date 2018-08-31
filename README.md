@@ -29,6 +29,8 @@ module.exports = {
 
 ### AWS Setup
 
+In addition to .env file add its contents to secret.env.js like shown above.
+
 [Tutorial](https://docs.google.com/document/d/e/2PACX-1vTgZOdXz2sqJ4MH8ISCl3Eb7Ci5XFjw-wULsXHNcgo6dWrFo7axGaOOS6f5yJY4fSyM6QtpaFQUVbAJ/pub)
 
 ### Running
