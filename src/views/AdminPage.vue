@@ -162,7 +162,7 @@ export default {
     },
     audioPreviewUpload: function (file, index) {
       if (file && file.size > 400000) {
-        alert('Suurin sallittu tiedosto koko on 100kb')
+        alert('Suurin sallittu tiedosto koko on 400kb')
         return
       }
       saveAudio(file).then((res) => {

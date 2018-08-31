@@ -3,8 +3,8 @@
     <input class="helsinki" type="image" src="../../static/helsinki-logo.png">
     <input class="flag" type="image" v-for="(language, index) in languages" :key="index" @click="setLanguage(language)" :src="'../../static/'+ language +'-icon.png'"/>
     <div class="loydahelsinkibackground"></div>
-    <input class="loydahelsinki" type="image" src="../../static/loydahelsinki-logo.png">
-    <input class="kuva" type="image" src="../../static/landing.jpg">
+    <input class="loydahelsinki" style="max-height: 120px;" type="image" src="../../static/loydahelsinki-logo.png">
+    <input class="kuva" style="max-height: 1200px; background-color: rgba(255,255,255,1)" type="image" src="../../static/landing.jpg">
     <input class="koro" type="image" src="../../static/koro.png">
     <input class="eu" type="image" src="../../static/eu-logo.png">
   </div>
@@ -67,11 +67,14 @@ export default {
 .loydahelsinki {
   object-fit: contain;
   position: absolute;
-  margin: 3vw;
+  margin: 3vh;
+  margin-left: 2vh;
+  margin-right: 2vh;
   top:16vh;
   left:0px;
   outline: none;
   width: 94vw;
+  max-height: 15vh;
 }
 .loydahelsinkibackground {
   position: absolute;
@@ -81,6 +84,7 @@ export default {
   background-color: #FFFFFF;
 }
 .kuva {
+  padding-top: 1vh;
   object-fit: contain;
   width: 100vw;
   position: absolute;
@@ -90,17 +94,20 @@ export default {
 .eu {
   object-fit: contain;
   width: 44vw;
-  margin: 3vw;
-  position: absolute;
+  margin: 15px;
+  position: fixed;
   left:25vw;
   bottom: 0px;
+  max-height: 150px;
 }
 .koro {
-  position:absolute;
-  object-fit: contain;
+  position: fixed;
+  object-fit: fill;
+  max-height: 250px;
   width:100vw;
   left:0px;
   bottom: 0px;
+  margin-bottom: 0px;
 }
 .pic {
   outline: none;

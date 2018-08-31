@@ -99,19 +99,14 @@ export default {
     // TODO: COMBINE THE NEXT THREE METHODS
     handleInfoAudioUpload: function () {
       const file = document.getElementById('infoaudiofile').files[0]
-      if (file && file.size > 100000) {
-        alert('Suurin sallittu tiedosto koko on 100kb')
-        return
-      }
-      console.log(file, this.selectedLanguage)
       saveInfoAudio(file, this.selectedLanguage).then((res) => {
         console.log(res)
       })
     },
     handleAudioUpload: function (file) {
       const audioInput = !(file instanceof Event) ? file : document.getElementById('audiofile').files[0]
-      if (file && file.size > 100000) {
-        alert('Suurin sallittu tiedosto koko on 100kb')
+      if (file && file.size > 400000) {
+        alert('Suurin sallittu tiedosto koko on 400kb')
         return
       }
       saveAudio(audioInput).then((res) => {
