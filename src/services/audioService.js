@@ -5,5 +5,5 @@ export const saveAudio = (file) => {
 }
 
 export const saveInfoAudio = (file, lang) => {
-  return Storage.put('audio/generalInformationClip-' + lang, file)
+  return Storage.put('audio/generalInformationClip-' + lang + '.mp3', file)
 }

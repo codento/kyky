@@ -4,7 +4,7 @@
         <input class="helsinki" type="image" src="../../static/helsinki-logo.png">
         <!-- tämä tuohon alas jos audionappi vain silloin kuin audiota; v-if="node.audio[languageIndex]" -->
         <sound :sound="node.audio[languageIndex]" :muted="muted" :flipMuted="flipMuted"/>
-        <input class="headericon" type="image" src="../../static/info.png" @click="handleInfoButtonClick">
+        <img class="headericon" type="image" src="../../static/info.png" @click="handleInfoButtonClick">
         <img
           class="headericon"
           type="image"
@@ -16,7 +16,7 @@
         :moveToParent="moveToParent"/>
     </div>
     <div>
-      <img class="arrow" type="image" src="../../static/uparrow.png" v-if="parent" @pointerdown="moveToParent">
+      <img class="arrow" type="image" src="../../static/uparrow.png" v-if="parent" @pointerdown="moveToParent" @touchstart="moveToParent">
     </div>
 
     <v-touch

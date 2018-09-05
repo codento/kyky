@@ -106,6 +106,6 @@ body {
   z-index: 50;
 }
 .btn {
-  padding: 0.375rem
+  padding: 0.275rem;
 }
 </style>

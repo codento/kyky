@@ -3,12 +3,16 @@
     <ul>
       <li >
         <button class="box" @click="hamdlePathButtonClick" :style="getButtonColour(2)">
-          <img id="icon" src="../../static/helsinkiIcon.png" :height="deviceDimension.height / 15" :width="deviceDimension.height / 15"/>
+          <div :style="getStyleByPhone()">
+            <img class="icon" src="../../static/helsinkiIcon.png" :height="deviceDimension.height / 15" :width="deviceDimension.height / 15"/>
+          </div>
         </button>
       </li>
       <li v-for="(waypoint, index) in path" :key="index">
         <button class="box" @click="hamdlePathButtonClick(index)" :style="getButtonColour(index+3)">
-          <img id="icon" :src="iconUrl(waypoint)" :height="deviceDimension.height / 15" :width="deviceDimension.height / 15"/>
+          <div :style="getStyleByPhone()">
+            <img class="icon" :src="iconUrl(waypoint)" :height="deviceDimension.height / 15" :width="deviceDimension.height / 15"/>
+          </div>
         </button>
       </li>
     </ul>
@@ -34,6 +38,11 @@ export default {
       for (let i = 0; i < steps; i++) {
         this.moveToParent()
       }
+    },
+    getStyleByPhone: function () {
+      return window.navigator.userAgent.match(/iPhone/i) ? 
+        "position: absolute; height: 9vh; width: 9vh; top: 0%; margin-left: -8px;" :
+        "position: absolute; height: 9vh; width: 9vh; top: 0%;"
     }
   },
   computed: {
@@ -48,6 +57,13 @@ export default {
 </script>
 
 <style scoped>
+.icon {
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 8px);
+  transform: translate(-50%, -50%);
+  height: 7vh;
+}
 .box {
     margin-top: 0px;
     margin-bottom: 0px;

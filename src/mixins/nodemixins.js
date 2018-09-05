@@ -52,7 +52,7 @@ export default {
       }
     },
     handleInfoButtonClick () {
-      EventBus.$emit('playAudio', 'audio/generalInformationClip-' + this.languageIndex)
+      EventBus.$emit('playAudio', 'audio/generalInformationClip-' + this.languageIndex + '.mp3')
     },
     moveToSibling (left) {
       if (isRootNode(this.node.id)) {
