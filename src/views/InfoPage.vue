@@ -110,9 +110,9 @@ export default {
       history.pushState(null, document.title, location.href)
     })
 
-    this.showModalIfNotPortrait(window.screen.orientation.angle)
+    this.showModalIfNotPortrait(window.orientation)
     window.addEventListener('orientationchange', () => {
-      this.showModalIfNotPortrait(window.screen.orientation.angle)
+      this.showModalIfNotPortrait(window.orientation)
     })
   }
 }
