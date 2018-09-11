@@ -86,7 +86,7 @@ export default {
       return windowHeight / 140
     },
     showModalIfNotPortrait (angle) {
-      if (angle === 0) {
+      if (angle === 0 || angle === undefined) {
         this.showModal = false
       } else {
         this.showModal = true
