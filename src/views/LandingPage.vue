@@ -1,7 +1,8 @@
 <template>
   <div class="bg"  style="background-color: #0000BF" id="landing">
     <input class="helsinki" type="image" src="../../static/helsinki-logo.png">
-    <input class="flag" type="image" v-for="(language, index) in languages" :key="index" @click="setLanguage(language)" :src="'../../static/'+ language +'-icon.png'"/>
+    <!-- v-if="language !== 'ar'" Disables Arabia -->
+    <input class="flag" type="image" v-for="(language, index) in languages" v-if="language !== 'ar'" :key="index" @click="setLanguage(language)" :src="'../../static/'+ language +'-icon.png'"/>
     <div class="loydahelsinkibackground"></div>
     <input class="loydahelsinki" style="max-height: 120px;" type="image" src="../../static/loydahelsinki-logo.png">
     <input class="kuva" style="max-height: 1200px; background-color: rgba(255,255,255,1)" type="image" src="../../static/landing.jpg">

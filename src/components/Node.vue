@@ -1,6 +1,6 @@
 <template>
 <div :style="adminview ? 'height: 100vh;' : 'height: 78vh'">
-  <div :key="node.id" style="padding-left: 7vw; padding-right: 7vw;" class="container iconarea" v-if="hasChildren">
+  <div :key="node.id" style="padding-left: 31px; padding-right: 31px;" class="container iconarea" v-if="hasChildren">
     <div
       v-for="(n, index) in node.children"
       :key="n.id"
@@ -142,7 +142,7 @@ export default {
 
 <style scoped>
 .iconarea {
-  max-width: 530px;
+  max-width: 520px;
   padding-top: 4vh;
 }
 .maps{
