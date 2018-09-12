@@ -1,6 +1,6 @@
 <template>
 <div :style="adminview ? 'height: 100vh;' : 'height: 78vh'">
-  <div :key="node.id" style="padding-left: 23px; padding-right: 23px;" class="container iconarea" v-if="hasChildren">
+  <div :key="node.id" style="padding-left: 7vw; padding-right: 7vw;" class="container iconarea" v-if="hasChildren">
     <div
       v-for="(n, index) in node.children"
       :key="n.id"
@@ -159,8 +159,8 @@ export default {
 .box {
     width: 18vw;
     height: 18vw;
-    max-width: 120px;
-    max-height: 120px;
+    max-width: 100px;
+    max-height: 100px;
     position: relative;
 }
 .box:hover {
