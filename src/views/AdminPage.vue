@@ -3,7 +3,7 @@
     class="bg container.fluid"
     :style="bgStyle(true)"
     id="info">
-    <div class="row" style="max-height: 100vh">
+    <div class="row" style="max-height: 100vh;">
       <div class="col-xl-2 col-md-3 col-sm-4 col-5 zeropadding adminsidebar">
         <admin-controls
           v-if="user.authenticated"
@@ -186,13 +186,23 @@ export default {
       }
       saveIcon(file).then((res) => {
         let link = this.$children[0].newUrl
-        if (link) {
+        let link2 = this.$children[0].newUrl2
+        let link3 = this.$children[0].newUrl3
+        if (link || link2 || link3) {
           // NOT CHANGING ICON, FIX
           if (link && !verifyProtocol(link)) {
             link = getPrefix(link) + link
           }
-          this.$set(this.node.children[index], 'url', link)
+          if (link2 && !verifyProtocol(link2)) {
+            link2 = getPrefix(link2) + link2
+          }
+          if (link3 && !verifyProtocol(link3)) {
+            link3 = getPrefix(link3) + link3
+          }
+          this.$set(this.node.children[index], 'url', [link || '', link2 || '', link3 || ''])
           this.$children[0].newUrl = ''
+          this.$children[0].newUrl2 = ''
+          this.$children[0].newUrl3 = ''
           this.$set(this.node.children[index], 'icon', res.key)
           return
         }

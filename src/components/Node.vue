@@ -60,6 +60,7 @@
 
 <script>
 import EventBus from '../utils/eventBus'
+import { makeStringIntoArray } from '../utils'
 
 export default {
   name: 'Node',

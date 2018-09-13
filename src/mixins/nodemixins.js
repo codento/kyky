@@ -1,4 +1,4 @@
-import { isRootNode, mod } from '../utils'
+import { isRootNode, mod, makeStringIntoArray } from '../utils'
 import EventBus from '../utils/eventBus'
 import initialNode from '../assets/initialNode'
 
@@ -81,7 +81,8 @@ export default {
         this.colorIndex++
       }
       if (node.url){
-        window.open(node.url,"_self")
+        const uri = makeStringIntoArray(node.url)
+        window.open(uri[this.languageIndex] || uri[0],"_self")
       }
     },
   }

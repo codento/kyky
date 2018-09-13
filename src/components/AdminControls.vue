@@ -40,7 +40,9 @@
    </form>
   <div class="form-group">
     <label for="exampleInputEmail1">Uusi Linkki</label>
-    <input id="newUrl" v-model="newUrl" type="text" placeholder="Lisää linkki."> <br>
+    <input id="newUrl" v-model="newUrl" type="text" placeholder="Suomi"> <br>
+    <input id="newUrl2" v-model="newUrl2" type="text" placeholder="Somali"> <br>
+    <input id="newUrl3" v-model="newUrl3" type="text" placeholder="Arabia"> <br>
   </div>
    <br />
    <button class="btn btn-success" style="min-height: 50px" @click="$emit('getJSON', 'publish')"> Julkaise </button>
@@ -70,10 +72,19 @@ export default {
         this.$router.go('/')
       }
     },
+    // Apparently not used?
     addChild: function (iconUrl) {
       let newLink = this.newUrl
+      let newLink2 = this.newUrl
+      let newLink3 = this.newUrl
       if (this.newUrl && !verifyProtocol(this.newUrl)) {
         newLink = getPrefix(this.newUrl) + this.newUrl
+      }
+      if (this.newUrl2 && !verifyProtocol(this.newUrl2)) {
+        newLink = getPrefix(this.newUrl2) + this.newUrl2
+      }
+      if (this.newUrl3 && !verifyProtocol(this.newUrl3)) {
+        newLink = getPrefix(this.newUrl3) + this.newUrl3
       }
       this.$emit('addChild', {
         // TODO IMPORTANT: REPLACE
@@ -87,7 +98,11 @@ export default {
         url: newLink
       })
       this.newUrl = ''
+      this.newUrl2 = ''
+      this.newUrl3 = ''
       document.getElementById('newUrl').blur()
+      document.getElementById('newUrl2').blur()
+      document.getElementById('newUrl3').blur()
     },
     addAudio: function (audioUrl) {
       this.node.audio[this.selectedLanguage] = audioUrl
@@ -137,6 +152,8 @@ export default {
   data () {
     return {
       newUrl: '',
+      newUrl2: '',
+      newUrl3: '',
       location: ''
     }
   }

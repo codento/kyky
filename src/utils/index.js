@@ -15,3 +15,6 @@ export function verifyProtocol (input) {
 export function getPrefix (input) {
   return (/www./.test(input) || input.endsWith('.com')) ? 'http://' : 'tel:'
 }
+
+// This exists because old links were stored only as strings, now -> array by language
+export const makeStringIntoArray = target => typeof target === 'string' ? [target, '', ''] : target
