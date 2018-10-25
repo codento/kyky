@@ -60,7 +60,7 @@ export default {
   },
   computed: {
     soundUrl: function () {
-      return 'https://' + process.env.RESOURCEBUCKET + '.s3.eu-west-1.amazonaws.com/public/' + this.sound
+      return 'http://' + process.env.RESOURCEBUCKET + '.s3.eu-west-1.amazonaws.com/public/' + this.sound
     }
   }
 }

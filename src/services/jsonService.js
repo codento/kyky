@@ -1,6 +1,6 @@
 import { Storage } from 'aws-amplify'
 
-const bucketUrl = 'https://' + process.env.RESOURCEBUCKET + '.s3.eu-west-1.amazonaws.com/public/json'
+const bucketUrl = 'http://' + process.env.RESOURCEBUCKET + '.s3.eu-west-1.amazonaws.com/public/json'
 
 export const getJSONfromS3 = () => {
   return fetch(bucketUrl)

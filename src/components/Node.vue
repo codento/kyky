@@ -74,7 +74,7 @@ export default {
   ],
   computed: {
     mapsUrl () {
-      return 'https://www.google.com/maps/embed/v1/place?key=' + process.env.MAPS_KEY + '&q=' + this.node.location
+      return 'http://www.google.com/maps/embed/v1/place?key=' + process.env.MAPS_KEY + '&q=' + this.node.location
     },
     hasChildren () {
       return (this.node.children && this.node.children.length > 0)
@@ -96,8 +96,8 @@ export default {
     },
     iconUrl: function (route) {
       return route
-        ? 'https://' + process.env.RESOURCEBUCKET + '.s3.eu-west-1.amazonaws.com/public/' + route
-        : 'https://www.transparenttextures.com/patterns/asfalt-light.png'
+        ? 'http://' + process.env.RESOURCEBUCKET + '.s3.eu-west-1.amazonaws.com/public/' + route
+        : 'http://www.transparenttextures.com/patterns/asfalt-light.png'
     },
     handleTap: function (e, index) {
       if (!this.node.children[index].icon) {
@@ -113,7 +113,7 @@ export default {
       this.view === 'admin' ? document.getElementById(id).style.background = 'orange' : {}
     },
     handleDragLeave (e, id, url) {
-      if (e.target.src === 'https://www.transparenttextures.com/patterns/asfalt-light.png') {
+      if (e.target.src === 'http://www.transparenttextures.com/patterns/asfalt-light.png') {
         document.getElementById(id).style.background = this.view === 'admin' ? 'rgba(4, 4, 0, 0.1)' : 'rgba(4, 4, 0, 0)'
         return
       }

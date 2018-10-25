@@ -28,7 +28,7 @@ export default {
   ],
   methods: {
     iconUrl: function (route) {
-      return 'https://' + process.env.RESOURCEBUCKET + '.s3.eu-west-1.amazonaws.com/public/' + route
+      return 'http://' + process.env.RESOURCEBUCKET + '.s3.eu-west-1.amazonaws.com/public/' + route
     },
     getButtonColour: function (index) {
       return 'background-color: ' + this.colors[index]

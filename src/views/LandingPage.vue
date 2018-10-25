@@ -4,8 +4,8 @@
     <!-- v-if="language !== 'ar'" Disables Arabia -->
     <input class="flag" type="image" v-for="(language, index) in languages" v-if="language !== 'ar'" :key="index" @click="setLanguage(language)" :src="'../../static/'+ language +'-icon.png'"/>
     <div class="loydahelsinkibackground"></div>
-    <input class="loydahelsinki" style="max-height: 120px;" type="image" src="../../static/loydahelsinki-logo.png">
-    <input class="kuva" style="max-height: 1200px; background-color: rgba(255,255,255,1)" type="image" src="../../static/landing.jpg">
+    <input class="loydahelsinki" style="max-height: 90px;" type="image" src="../../static/loydahelsinki-logo.png">
+    <img class="kuva noselect" style="max-height: 600px; background-color: rgba(255,255,255,1)" type="image" src="../../static/landing.jpg">
     <input class="koro" type="image" src="../../static/koro.png">
     <input class="eu" type="image" src="../../static/eu-logo.png">
   </div>
@@ -76,6 +76,7 @@ export default {
   outline: none;
   width: 94vw;
   max-height: 15vh;
+  z-index: 100;
 }
 .loydahelsinkibackground {
   position: absolute;
@@ -85,7 +86,7 @@ export default {
   background-color: #FFFFFF;
 }
 .kuva {
-  padding-top: 1vh;
+  padding-top: 7vw;
   object-fit: contain;
   width: 100vw;
   position: absolute;
@@ -99,12 +100,12 @@ export default {
   position: fixed;
   left:25vw;
   bottom: 0px;
-  max-height: 150px;
+  max-height: 15vh;
 }
 .koro {
   position: fixed;
   object-fit: fill;
-  max-height: 250px;
+  max-height: 20vh;
   width:100vw;
   left:0px;
   bottom: 0px;
@@ -113,6 +114,14 @@ export default {
 .pic {
   outline: none;
   position: absolute;
-  top:
+}
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
 }
 </style>

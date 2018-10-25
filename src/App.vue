@@ -25,7 +25,7 @@ export default {
     })
     EventBus.$on('playAudio', function (input) {
       if (input) {
-        player.src = 'https://s3-eu-west-1.amazonaws.com/' + process.env.RESOURCEBUCKET + '/public/' + input
+        player.src = 'http://s3-eu-west-1.amazonaws.com/' + process.env.RESOURCEBUCKET + '/public/' + input
         player.load()
         player.play()
       }
