@@ -39,6 +39,14 @@ export default new Router({
       component: LandingPage
     },
     {
+      path: '/tekijatiedot',
+      name: 'tekijatiedot',
+      component: LandingPage,
+      props: {
+        showInfo: true
+      }
+    },
+    {
       path: '/admin',
       name: 'Admin',
       component: AdminPage,
@@ -50,7 +58,7 @@ export default new Router({
       component: InfoPage,
       props: true,
       beforeEnter: (to, from, next) => {
-        from.name === 'Home' ? next() : next('/')
+        from.name === 'Home' || from.name === 'tekijatiedot' ? next() : next('/')
       }
     },
     {

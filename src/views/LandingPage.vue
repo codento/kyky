@@ -3,11 +3,17 @@
     <input class="helsinki" type="image" src="../../static/helsinki-logo.png">
     <!-- v-if="language !== 'ar'" Disables Arabia -->
     <input class="flag" type="image" v-for="(language, index) in languages" v-if="language !== 'ar'" :key="index" @click="setLanguage(language)" :src="'../../static/'+ language +'-icon.png'"/>
-    <div class="loydahelsinkibackground"></div>
     <input class="loydahelsinki" style="max-height: 90px;" type="image" src="../../static/loydahelsinki-logo.png">
-    <img class="kuva noselect" style="max-height: 600px; background-color: rgba(255,255,255,1)" type="image" src="../../static/landing.jpg">
-    <input class="koro" type="image" src="../../static/koro.png">
-    <input class="eu" type="image" src="../../static/eu-logo.png">
+    <div class="loydahelsinkibackground"></div>
+    <div v-if="!showInfo">
+      <img class="kuva noselect" style="max-height: 600px; background-color: rgba(255,255,255,1)" type="image" src="../../static/landing.jpg">
+      <img class="koro" type="image" src="../../static/koro.png">
+      <img class="eu" type="image" src="../../static/eu-logo.png">
+    </div>
+    <ProjectInfo v-if="showInfo"/>
+    <button class="info-btn" @click="goToProjectInfo">
+      Tietoa sovelluksesta
+    </button>
   </div>
 </template>
 
@@ -15,12 +21,22 @@
 import router from '../router/'
 import {languages} from '../utils'
 import EventBus from '../utils/eventBus'
+import ProjectInfo from '../components/ProjectInfo'
 
 export default {
+  props: [
+    'showInfo'
+  ],
+  components: {
+    ProjectInfo
+  },
   methods: {
     setLanguage (language) {
       EventBus.$emit('initAudio', {})
-      router.push({name: 'info', params: { language: language }})
+      router.push({ name: 'info', params: { language: language } })
+    },
+    goToProjectInfo () {
+      router.push({ name: 'tekijatiedot', params: { showInfo: true } })
     }
   },
   data () {
@@ -68,13 +84,16 @@ export default {
 .loydahelsinki {
   object-fit: contain;
   position: absolute;
-  margin: 3vh;
+  margin: 10px;
   margin-left: 2vh;
   margin-right: 2vh;
+  padding-left: 10px;
+  padding-right: 10px;
   top:16vh;
   left:0px;
   outline: none;
   width: 94vw;
+  height: 10vh;
   max-height: 15vh;
   z-index: 100;
 }
@@ -86,11 +105,11 @@ export default {
   background-color: #FFFFFF;
 }
 .kuva {
-  padding-top: 7vw;
+  
   object-fit: contain;
   width: 100vw;
   position: absolute;
-  top: 30vh;
+  top: 31vh;
   left: 0vh;
 }
 .eu {
@@ -123,5 +142,11 @@ export default {
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
+}
+.info-btn {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  padding: 3px;
 }
 </style>
