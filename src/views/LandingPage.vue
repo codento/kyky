@@ -147,6 +147,13 @@ export default {
   position: absolute;
   bottom: 5px;
   left: 5px;
-  padding: 3px;
+  padding: 0.2rem;
+  padding-left: 0rem;
+  padding-right: 0rem;
+  max-width: 25vw;
+  font-size: 0.8rem;
+  background: none;
+  border: 0px;
+  line-height: 0.8rem;
 }
 </style>

@@ -63,11 +63,10 @@ export default {
   background-color: white;
 }
 .info-box {
-  padding: 0.2rem;
+  padding: 0.1rem;
 }
 .large-text {
   font-size: 1.2rem;
-  padding-bottom: 5px;
 }
 .medium-text {
   font-size: 0.9rem;
@@ -84,5 +83,8 @@ export default {
   left: 5px;
   padding: 3px;
   z-index: 10000;
+  font-size: 0.8rem;
+  background: none;
+  border: 0px;
 }
 </style>
