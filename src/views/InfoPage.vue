@@ -105,8 +105,10 @@ export default {
       })
 
     /* Disable backbutton */
+    const componentContext = this
     history.pushState(null, document.title, location.href)
     window.addEventListener('popstate', function (event) {
+      componentContext.moveToParent()
       history.pushState(null, document.title, location.href)
     })
 

@@ -82,7 +82,7 @@ export default {
       }
       if (node.url){
         const uri = makeStringIntoArray(node.url)
-        window.open(uri[this.languageIndex] || uri[0],"_self")
+        window.open(uri[this.languageIndex] || uri[0],"_blank")
       }
     },
   }

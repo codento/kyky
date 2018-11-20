@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     changeLanguage: function () {
-      if (this.languageIndex === this.languages.length - 1 || this.languageIndex === 1) {
+      if (this.languageIndex === this.languages.length - 1) {
         this.languageIndex = 0
       } else {
         this.languageIndex++
