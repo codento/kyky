@@ -15,6 +15,8 @@
           :deleteMode="deleteMode"
           @toggleDeleteMode="toggleDeleteMode"
           :unloadListener="unloadListener"
+          @updatePublishStatus="updatePublishStatus"
+          :allPublished="allPublished"
           @addLocation="addLocation"/>
       </div>
       <div class="col-xl-10 col-md-9 col-sm-8 col-7">
@@ -90,7 +92,7 @@
 
 <script>
 import { Node, AdminControls, Sound } from '../components/'
-import { saveJSONTree, saveAdminJSON, getAdminJSON } from '../services/jsonService'
+import { saveJSONTree, saveAdminJSON, getAdminJSON, getJSONfromS3 } from '../services/jsonService'
 import { isRootNode, verifyProtocol, getPrefix } from '../utils'
 import Auth from '../auth'
 import { nodemixin, languagemixin } from '../mixins/'
@@ -111,6 +113,7 @@ export default {
       const windowHeight = document.documentElement.clientHeight
       return windowHeight / 140
     },
+    // this apparently saves?? dunno why named this way
     getJSON: function (target) {
       let tempNode = this.node
       while (isRootNode(tempNode.id)) {
@@ -123,8 +126,10 @@ export default {
         const targetJSON = JSON.stringify(tempNode)
         saveAdminJSON(targetJSON)
         saveJSONTree(targetJSON)
+        this.updatePublishStatus()
       } else {
         saveAdminJSON(JSON.stringify(tempNode))
+        this.updatePublishStatus()
       }
       this.node = tempNode
       this.path = []
@@ -169,19 +174,27 @@ export default {
     },
     audioPreviewUpload: function (file, index) {
       if (file && file.size > 400000) {
-        alert('Suurin sallittu tiedosto koko on 400kb')
+        alert('Suurin sallittu tiedostokoko on 400kb')
         return
       }
       saveAudio(file).then((res) => {
         this.node.children[index].previewAudio[this.languageIndex] = res.key
       })
+      this.allPublished = false
     },
     addLocation (location) {
       this.node.location = location
     },
+    updatePublishStatus () {
+      getJSONfromS3().then(json => 
+        getAdminJSON().then(adminJson => 
+          this.allPublished = JSON.stringify(json) === JSON.stringify(adminJson)
+        )
+      )
+    },
     updateIcon (file, index) {
       if (file && file.size > 50000) {
-        alert('Suurin sallittu tiedosto koko on 50kb')
+        alert('Suurin sallittu tiedostokoko on 50kb')
         return
       }
       saveIcon(file).then((res) => {
@@ -227,6 +240,7 @@ export default {
           )
         this.node.children[index].children = leafs
       })
+      this.allPublished = false
     }
   },
   data () {
@@ -236,7 +250,8 @@ export default {
        deleteMode: false,
        user: Auth.user,
        path: [],
-       unloadListener: null
+       unloadListener: null,
+       allPublished: true
     }
     /* eslint-enable */
   },

@@ -47,6 +47,9 @@
    <br />
    <button class="btn btn-success" style="min-height: 50px" @click="$emit('getJSON', 'publish')"> Julkaise </button>
    <button class="btn btn-primary" @click="logout()"> Kirjaudu ulos </button>
+    <p style="padding-top: 5px;">
+      {{ allPublished ? '-' : 'Kaikkea ei julkaistu'}}
+    </p>
   </div>
 </template>
 
@@ -55,6 +58,7 @@ import { saveAudio, saveInfoAudio } from '../services/audioService'
 import { saveIcon } from '../services/iconService'
 import Auth from '../auth'
 import {verifyProtocol, getPrefix} from '../utils'
+import { getAdminJSON, getJSONfromS3 } from '../services/jsonService'
 
 export default {
   name: 'App',
@@ -62,7 +66,8 @@ export default {
     'node',
     'selectedLanguage',
     'deleteMode',
-    'unloadListener'
+    'unloadListener',
+    'allPublished'
   ],
   methods: {
     logout () {
@@ -156,6 +161,9 @@ export default {
       newUrl3: '',
       location: ''
     }
+  },
+  created () {
+    this.$emit('updatePublishStatus')
   }
 }
 </script>
